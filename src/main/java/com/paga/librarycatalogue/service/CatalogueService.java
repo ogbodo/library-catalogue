@@ -1,6 +1,7 @@
 package com.paga.librarycatalogue.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.paga.librarycatalogue.dao.CatalogueDao;
 import com.paga.librarycatalogue.model.Catalogue;
@@ -31,5 +32,9 @@ public class CatalogueService {
 
     public List<Catalogue> getAllCatalogue() {
         return catalogueDao.selectAllCatalogue();
+    }
+
+    public Optional<Catalogue> filterCatalogue(String criteria) {
+        return catalogueDao.filterCatalogue(criteria);
     }
 }

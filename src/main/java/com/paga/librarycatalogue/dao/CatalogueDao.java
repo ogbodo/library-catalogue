@@ -2,6 +2,7 @@
 package com.paga.librarycatalogue.dao;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import com.paga.librarycatalogue.model.Catalogue;
@@ -22,4 +23,6 @@ public interface CatalogueDao {
     }
 
     List<Catalogue> selectAllCatalogue();
+
+    Optional<Catalogue> filterCatalogue(String criteria);
 }

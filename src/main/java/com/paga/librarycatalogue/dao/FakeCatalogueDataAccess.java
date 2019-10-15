@@ -2,6 +2,7 @@ package com.paga.librarycatalogue.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import com.paga.librarycatalogue.model.Catalogue;
@@ -26,6 +27,11 @@ public class FakeCatalogueDataAccess implements CatalogueDao {
     @Override
     public List<Catalogue> selectAllCatalogue() {
         return DB;
+    }
+
+    @Override
+    public Optional<Catalogue> filterCatalogue(String criteria) {
+        return DB.stream().filter(catalogue -> catalogue.isAMatch(criteria)).findAny();
     }
 
 }

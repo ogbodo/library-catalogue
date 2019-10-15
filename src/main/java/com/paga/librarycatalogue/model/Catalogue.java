@@ -48,4 +48,10 @@ public class Catalogue {
         return genre;
     }
 
+    public Boolean isAMatch(String criteria) {
+        return (this.author.contains(criteria) || this.genre.contains(criteria) || this.releaseYear.contains(criteria)
+                || this.serialNumber.contains(criteria) || this.title.contains(criteria));
+
+    }
+
 }
