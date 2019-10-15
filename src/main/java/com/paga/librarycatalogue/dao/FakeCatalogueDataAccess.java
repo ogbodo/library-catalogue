@@ -19,12 +19,12 @@ public class FakeCatalogueDataAccess implements CatalogueDao {
     private static List<Catalogue> DB = new ArrayList<>();
 
     @Override
-    public int insertCatalogue(UUID id, Catalogue catalogue) {
+    public Catalogue insertCatalogue(UUID id, Catalogue catalogue) {
         int lastIndex = DB.size();
         lastIndex++;
         catalogue.setSerialNumber("LD" + lastIndex);
         DB.add(catalogue);
-        return 1;
+        return catalogue;
     }
 
     @Override
