@@ -21,7 +21,7 @@ public class FakeCatalogueDataAccess implements CatalogueDao {
     private static List<Catalogue> DB = new ArrayList<>();
 
     @Override
-    public Catalogue insertCatalogue(UUID id, Catalogue catalogue) {
+    public Catalogue addCatalogue(UUID id, Catalogue catalogue) {
         int lastIndex = DB.size();
         lastIndex++;
         catalogue.setSerialNumber("LD" + lastIndex);

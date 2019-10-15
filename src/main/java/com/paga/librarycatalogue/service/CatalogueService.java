@@ -27,7 +27,7 @@ public class CatalogueService {
 
     // This is the method responsible for creating new catalogue
     public Catalogue addCatalogue(Catalogue catalogue) {
-        return catalogueDao.insertCatalogue(catalogue);
+        return catalogueDao.addCatalogue(catalogue);
     }
 
     public List<Catalogue> getAllCatalogue() {

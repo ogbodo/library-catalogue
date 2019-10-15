@@ -12,14 +12,14 @@ import com.paga.librarycatalogue.model.Catalogue;
 public interface CatalogueDao {
 
     // This allow us to insert a catalogue with a given id
-    Catalogue insertCatalogue(UUID id, Catalogue catalogue);
+    Catalogue addCatalogue(UUID id, Catalogue catalogue);
 
     // This allow us to insert a catalogue without an id. instead we generate it
     // ourself
-    default Catalogue insertCatalogue(Catalogue catalogue) {
+    default Catalogue addCatalogue(Catalogue catalogue) {
         UUID id = UUID.randomUUID();
         catalogue.setId(id);
-        return insertCatalogue(id, catalogue);
+        return addCatalogue(id, catalogue);
     }
 
     List<Catalogue> selectAllCatalogue();
