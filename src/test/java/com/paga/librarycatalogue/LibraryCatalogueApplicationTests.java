@@ -38,7 +38,7 @@ public class LibraryCatalogueApplicationTests {
 		Catalogue catalogue3 = new Catalogue(UUID.fromString("f44af12e-322d-448a-8fd2-6fca1c3d6814"), "LD3",
 				"Natural Consumption", "Isaac Network", "1899", "Science");
 
-		// Mocking the data to be returned here
+		// using Mockito method to Mock the data to be returned here
 		when(repository.selectAllCatalogue())
 				.thenReturn(Stream.of(catalogue1, catalogue2, catalogue3).collect(Collectors.toList()));
 
@@ -51,7 +51,7 @@ public class LibraryCatalogueApplicationTests {
 		Catalogue newCatalogue = new Catalogue(UUID.fromString("f44af12e-322d-448a-8fd2-6fca1c3d6814"), "LD1",
 				"I, Zombie", "Israel Izamov", "2011", "Science Fiction");
 
-		// Mocking the data to be returned here
+		// using Mockito method to Mock the data to be returned here
 		when(repository.addCatalogue(newCatalogue)).thenReturn(newCatalogue);
 
 		assertEquals(newCatalogue, service.addCatalogue(newCatalogue));
@@ -74,13 +74,13 @@ public class LibraryCatalogueApplicationTests {
 		repository.addCatalogue(catalogue3);
 		repository.addCatalogue(catalogue4);
 
-		// Mocking the data to be returned here
+		// using Mockito method to Mock the data to be returned here
 		when(repository.filterCatalogue("Action Adventure"))
 				.thenReturn(Stream.of(catalogue2).collect(Collectors.toList()));
 
 		assertEquals(1, service.filterCatalogue("Action Adventure").size());
 
-		// Mocking another data to be returned
+		// using Mockito method to Mock another data to be returned
 		when(repository.filterCatalogue("Science"))
 				.thenReturn(Stream.of(catalogue2, catalogue4).collect(Collectors.toList()));
 
