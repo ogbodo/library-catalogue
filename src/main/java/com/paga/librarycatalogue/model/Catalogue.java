@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Catalogue {
     private UUID id;
-    private final String serialNumber;
+    private String serialNumber;
     private final String title;
     private final String author;
     private final String releaseYear;
@@ -30,6 +30,10 @@ public class Catalogue {
 
     public void setId(UUID id) {
         this.id = id;
+    }
+
+    public void setSerialNumber(String serialNumber) {
+        this.serialNumber = serialNumber;
     }
 
     public String getSerialNumber() {

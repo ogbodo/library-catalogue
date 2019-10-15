@@ -20,6 +20,9 @@ public class FakeCatalogueDataAccess implements CatalogueDao {
 
     @Override
     public int insertCatalogue(UUID id, Catalogue catalogue) {
+        int lastIndex = DB.size();
+        lastIndex++;
+        catalogue.setSerialNumber("LD" + lastIndex);
         DB.add(catalogue);
         return 1;
     }
