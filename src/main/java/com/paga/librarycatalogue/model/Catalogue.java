@@ -2,6 +2,8 @@ package com.paga.librarycatalogue.model;
 
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Catalogue {
     private final UUID id;
     private final String serialNumber;
@@ -10,7 +12,10 @@ public class Catalogue {
     private final String releaseYear;
     private final String genre;
 
-    public Catalogue(UUID id, String serialNumber, String title, String author, String releaseYear, String genre) {
+    public Catalogue(@JsonProperty("id") UUID id, @JsonProperty("serialNumber") String serialNumber,
+            @JsonProperty("title") String title, @JsonProperty("author") String author,
+            @JsonProperty("releaseYear") String releaseYear, @JsonProperty("genre") String genre) {
+
         this.id = id;
         this.serialNumber = serialNumber;
         this.title = title;
