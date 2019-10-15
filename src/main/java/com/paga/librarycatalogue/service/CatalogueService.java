@@ -3,6 +3,8 @@ package com.paga.librarycatalogue.service;
 import com.paga.librarycatalogue.dao.CatalogueDao;
 import com.paga.librarycatalogue.model.Catalogue;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,7 +17,8 @@ public class CatalogueService {
     // get reference to the catalogue data access object
     private final CatalogueDao catalogueDao;
 
-    public CatalogueService(CatalogueDao catalogueDao) {
+    @Autowired
+    public CatalogueService(@Qualifier("fakeDao") CatalogueDao catalogueDao) {
         this.catalogueDao = catalogueDao;
     }
 
