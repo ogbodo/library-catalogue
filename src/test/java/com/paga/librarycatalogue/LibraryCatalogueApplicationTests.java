@@ -38,6 +38,7 @@ public class LibraryCatalogueApplicationTests {
 		Catalogue catalogue3 = new Catalogue(UUID.fromString("f44af12e-322d-448a-8fd2-6fca1c3d6814"), "LD3",
 				"Natural Consumption", "Isaac Network", "1899", "Science");
 
+		// Mocking the data to be returned here
 		when(repository.selectAllCatalogue())
 				.thenReturn(Stream.of(catalogue1, catalogue2, catalogue3).collect(Collectors.toList()));
 
@@ -46,11 +47,12 @@ public class LibraryCatalogueApplicationTests {
 
 	@Test
 	public void addNewCatalogueTest() {
-		// Create some dialogue objects
+
 		Catalogue newCatalogue = new Catalogue(UUID.fromString("f44af12e-322d-448a-8fd2-6fca1c3d6814"), "LD1",
 				"I, Zombie", "Israel Izamov", "2011", "Science Fiction");
 
-		when(repository.insertCatalogue(newCatalogue)).thenReturn(newCatalogue);
+		// Mocking the data to be returned here
+		when(repository.addCatalogue(newCatalogue)).thenReturn(newCatalogue);
 
 		assertEquals(newCatalogue, service.addCatalogue(newCatalogue));
 	}
@@ -64,11 +66,25 @@ public class LibraryCatalogueApplicationTests {
 				"Black Gold", "Chima Adize", "2013", "Action Adventure");
 		Catalogue catalogue3 = new Catalogue(UUID.fromString("f44af12e-322d-448a-8fd2-6fca1c3d6814"), "LD3",
 				"Natural Consumption", "Isaac Network", "1899", "Science");
+		Catalogue catalogue4 = new Catalogue(UUID.fromString("f44af12e-322d-448a-8fd2-6fca1c3d6814"), "LD1",
+				"I, Zombie", "Israel Izamov", "2011", "Science Fiction");
 
+		repository.addCatalogue(catalogue1);
+		repository.addCatalogue(catalogue2);
+		repository.addCatalogue(catalogue3);
+		repository.addCatalogue(catalogue4);
+
+		// Mocking the data to be returned here
 		when(repository.filterCatalogue("Action Adventure"))
 				.thenReturn(Stream.of(catalogue2).collect(Collectors.toList()));
 
-		assertEquals(3, service.getAllCatalogue().size());
+		assertEquals(1, service.filterCatalogue("Action Adventure").size());
+
+		// Mocking another data to be returned
+		when(repository.filterCatalogue("Science"))
+				.thenReturn(Stream.of(catalogue2, catalogue4).collect(Collectors.toList()));
+
+		assertEquals(2, service.filterCatalogue("Science").size());
 	}
 
 }
