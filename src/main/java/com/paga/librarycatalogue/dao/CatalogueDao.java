@@ -19,6 +19,7 @@ public interface CatalogueDao {
     // ourself
     default int insertCatalogue(Catalogue catalogue) {
         UUID id = UUID.randomUUID();
+        catalogue.setId(id);
         return insertCatalogue(id, catalogue);
     }
 

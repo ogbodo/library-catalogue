@@ -5,7 +5,7 @@ import java.util.UUID;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Catalogue {
-    private final UUID id;
+    private UUID id;
     private final String serialNumber;
     private final String title;
     private final String author;
@@ -26,6 +26,10 @@ public class Catalogue {
 
     public UUID getId() {
         return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public String getSerialNumber() {
@@ -49,8 +53,10 @@ public class Catalogue {
     }
 
     public Boolean isAMatch(String criteria) {
-        return (this.author.contains(criteria) || this.genre.contains(criteria) || this.releaseYear.contains(criteria)
-                || this.serialNumber.contains(criteria) || this.title.contains(criteria));
+        criteria = criteria.toLowerCase();
+        return (this.author.toLowerCase().contains(criteria) || this.genre.toLowerCase().contains(criteria)
+                || this.releaseYear.toLowerCase().contains(criteria)
+                || this.serialNumber.toLowerCase().contains(criteria) || this.title.toLowerCase().contains(criteria));
 
     }
 
