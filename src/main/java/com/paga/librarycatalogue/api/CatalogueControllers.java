@@ -45,7 +45,7 @@ public class CatalogueControllers {
 
     // Method that retrieves all catalogue
     @GetMapping(path = "{criteria}")
-    public Optional<Catalogue> filterCatalogue(@PathVariable("criteria") String criteria) {
+    public List<Catalogue> filterCatalogue(@PathVariable("criteria") String criteria) {
         return catalogueService.filterCatalogue(criteria);
     }
 

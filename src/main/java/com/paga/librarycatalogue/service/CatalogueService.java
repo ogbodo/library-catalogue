@@ -34,7 +34,7 @@ public class CatalogueService {
         return catalogueDao.selectAllCatalogue();
     }
 
-    public Optional<Catalogue> filterCatalogue(String criteria) {
+    public List<Catalogue> filterCatalogue(String criteria) {
         return catalogueDao.filterCatalogue(criteria);
     }
 }

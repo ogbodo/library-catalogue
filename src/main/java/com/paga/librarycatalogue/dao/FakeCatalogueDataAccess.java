@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import com.paga.librarycatalogue.model.Catalogue;
 
@@ -33,8 +35,8 @@ public class FakeCatalogueDataAccess implements CatalogueDao {
     }
 
     @Override
-    public Optional<Catalogue> filterCatalogue(String criteria) {
-        return DB.stream().filter(catalogue -> catalogue.isAMatch(criteria)).findAny();
+    public List<Catalogue> filterCatalogue(String criteria) {
+        return DB.stream().filter(catalogue -> catalogue.isAMatch(criteria)).collect(Collectors.toList());
     }
 
 }
