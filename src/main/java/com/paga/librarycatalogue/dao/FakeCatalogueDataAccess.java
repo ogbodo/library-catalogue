@@ -23,4 +23,9 @@ public class FakeCatalogueDataAccess implements CatalogueDao {
         return 1;
     }
 
+    @Override
+    public List<Catalogue> selectAllCatalogue() {
+        return DB;
+    }
+
 }

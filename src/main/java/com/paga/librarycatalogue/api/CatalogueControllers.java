@@ -1,9 +1,12 @@
 package com.paga.librarycatalogue.api;
 
+import java.util.List;
+
 import com.paga.librarycatalogue.model.Catalogue;
 import com.paga.librarycatalogue.service.CatalogueService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +33,12 @@ public class CatalogueControllers {
     public void addCatalogue(@RequestBody Catalogue catalogue) {
         catalogueService.addCatalogue(catalogue);
 
+    }
+
+    // Method that retrieves all catalogue
+    @GetMapping
+    public List<Catalogue> getAllCatalogue() {
+        return catalogueService.getAllCatalogue();
     }
 
 }

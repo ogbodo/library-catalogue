@@ -1,5 +1,7 @@
 package com.paga.librarycatalogue.service;
 
+import java.util.List;
+
 import com.paga.librarycatalogue.dao.CatalogueDao;
 import com.paga.librarycatalogue.model.Catalogue;
 
@@ -27,4 +29,7 @@ public class CatalogueService {
         return catalogueDao.insertCatalogue(catalogue);
     }
 
+    public List<Catalogue> getAllCatalogue() {
+        return catalogueDao.selectAllCatalogue();
+    }
 }

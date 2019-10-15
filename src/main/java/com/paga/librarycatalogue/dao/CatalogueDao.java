@@ -1,6 +1,7 @@
 
 package com.paga.librarycatalogue.dao;
 
+import java.util.List;
 import java.util.UUID;
 
 import com.paga.librarycatalogue.model.Catalogue;
@@ -19,4 +20,6 @@ public interface CatalogueDao {
         UUID id = UUID.randomUUID();
         return insertCatalogue(id, catalogue);
     }
+
+    List<Catalogue> selectAllCatalogue();
 }
