@@ -1,7 +1,6 @@
 package com.paga.librarycatalogue.api;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.paga.librarycatalogue.model.Catalogue;
 import com.paga.librarycatalogue.service.CatalogueService;
@@ -44,7 +43,7 @@ public class CatalogueControllers {
     }
 
     // Method that retrieves all catalogue
-    @GetMapping(path = "{criteria}")
+    @GetMapping(path = "/{criteria}")
     public List<Catalogue> filterCatalogue(@PathVariable("criteria") String criteria) {
         return catalogueService.filterCatalogue(criteria);
     }
