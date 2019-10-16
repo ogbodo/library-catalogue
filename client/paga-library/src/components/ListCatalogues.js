@@ -1,14 +1,32 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-import { Table, Input, Card, Button } from "semantic-ui-react";
+import {
+  Table,
+  Input,
+  Card,
+  Button,
+  Icon,
+  Modal,
+  Header
+} from "semantic-ui-react";
+
+//Components
+import NewCatalogueForm from "./NewCatalogueForm";
 
 function ListCatalogues({ catalogueList }) {
+  const [openState, setOpenState] = useState(false);
+
+  function toggleOpenState() {
+    setOpenState(oldState => !oldState);
+  }
+
   const [state, setState] = useState({
     isLoading: false,
     filterText: "",
     list: []
   });
+
   useEffect(() => {
     setState(oldState => {
       return { ...oldState, list: catalogueList };
@@ -46,7 +64,41 @@ function ListCatalogues({ catalogueList }) {
   }
 
   return (
-    <>
+    <div style={{ paddingTop: 50 }}>
+      <div style={{ color: "#e94d1c", float: "left", paddingBottom: 10 }}>
+        <Modal
+          trigger={
+            <Button
+              primary
+              style={{ backgroundColor: "green" }}
+              onClick={toggleOpenState}
+            >
+              <Icon name="plus" />
+              Create New Catalogue
+            </Button>
+          }
+          open={openState}
+          onClose={toggleOpenState}
+          basic
+          size="small"
+          closeIcon
+        >
+          <Header icon="plus" content="Please Enter The catalogue Details" />
+          <Modal.Content>
+            <NewCatalogueForm />
+          </Modal.Content>
+
+          <Modal.Actions>
+            <Button
+              primary
+              style={{ backgroundColor: "green" }}
+              // onClick={() => createService(true)}
+            >
+              <Icon name="check" /> Ok, Submit
+            </Button>
+          </Modal.Actions>
+        </Modal>
+      </div>
       <div style={{ color: "#e94d1c", float: "right", paddingBottom: 10 }}>
         <Input
           placeholder={"Filter..."}
@@ -89,7 +141,7 @@ function ListCatalogues({ catalogueList }) {
           No data to display!
         </Card>
       )}
-    </>
+    </div>
   );
 
   function PopulateTable({ catalogue }) {
