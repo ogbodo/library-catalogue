@@ -11,8 +11,7 @@ function ManaCatalogue() {
   //Fetch all catalogues
   useEffect(() => {
     axios.get("/catalogue").then(catalogueResp => {
-      const catalogues = catalogueResp.data.data;
-      console.log(catalogues);
+      const catalogues = catalogueResp.data;
       setState(catalogues);
     });
   }, []);

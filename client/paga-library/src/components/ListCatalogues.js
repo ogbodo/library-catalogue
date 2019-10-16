@@ -7,25 +7,27 @@ function ListCatalogues({ catalogueList }) {
   const [state, setState] = useState({
     isLoading: false,
     filterText: "",
-    catalogueList
+    list: []
   });
+  useEffect(() => {
+    setState(oldState => {
+      return { ...oldState, list: catalogueList };
+    });
+  }, [catalogueList]);
 
   useEffect(() => {
-    if (state.isLoading) {
-      //Filter catalogue
-      axios.get(`/catalogue/${state.filterText}`).then(catalogueResp => {
-        const catalogues = catalogueResp.data.data;
-        console.log(catalogues);
-        setState(oldState => {
-          return { ...oldState, isLoading: false, catalogueList: catalogues };
-        });
+    //Filter catalogue
+    axios.get(`/catalogue/${state.filterText}`).then(catalogueResp => {
+      const catalogues = catalogueResp.data;
+      setState(oldState => {
+        return { ...oldState, isLoading: false, list: catalogues };
       });
-    }
+    });
   }, [state.filterText, state.isLoading]);
 
   function onChange(_e, { value }) {
     setState(oldState => {
-      return { ...oldState, filterText: value.trim() };
+      return { ...oldState, filterText: value };
     });
   }
 
@@ -73,16 +75,16 @@ function ListCatalogues({ catalogueList }) {
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {state.catalogueList.length > 0
-            ? state.catalogueList.map(catalogue => {
+          {state.list.length > 0
+            ? state.list.map(catalogue => {
                 return (
-                  <PopulateTable catalogue={catalogue} key={catalogue._id} />
+                  <PopulateTable catalogue={catalogue} key={catalogue.id} />
                 );
               })
             : null}
         </Table.Body>
       </Table>
-      {state.catalogueList.length === 0 && (
+      {state.list.length === 0 && (
         <Card style={{ color: "#e94d1c", fontWeight: "bold" }}>
           No data to display!
         </Card>
