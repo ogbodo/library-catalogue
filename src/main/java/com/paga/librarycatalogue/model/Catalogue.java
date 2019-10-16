@@ -2,14 +2,20 @@ package com.paga.librarycatalogue.model;
 
 import java.util.UUID;
 
+import javax.validation.constraints.NotBlank;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Catalogue {
-    private final UUID id;
-    private final String serialNumber;
+    private UUID id;
+    private String serialNumber;
+    @NotBlank
     private final String title;
+    @NotBlank
     private final String author;
+    @NotBlank
     private final String releaseYear;
+    @NotBlank
     private final String genre;
 
     public Catalogue(@JsonProperty("id") UUID id, @JsonProperty("serialNumber") String serialNumber,
@@ -26,6 +32,14 @@ public class Catalogue {
 
     public UUID getId() {
         return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public void setSerialNumber(String serialNumber) {
+        this.serialNumber = serialNumber;
     }
 
     public String getSerialNumber() {
@@ -46,6 +60,14 @@ public class Catalogue {
 
     public String getGenre() {
         return genre;
+    }
+
+    public Boolean isAMatch(String criteria) {
+        criteria = criteria.toLowerCase();
+        return (this.author.toLowerCase().contains(criteria) || this.genre.toLowerCase().contains(criteria)
+                || this.releaseYear.toLowerCase().contains(criteria)
+                || this.serialNumber.toLowerCase().contains(criteria) || this.title.toLowerCase().contains(criteria));
+
     }
 
 }

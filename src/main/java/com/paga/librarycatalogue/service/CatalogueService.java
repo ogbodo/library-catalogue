@@ -1,6 +1,7 @@
 package com.paga.librarycatalogue.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.paga.librarycatalogue.dao.CatalogueDao;
 import com.paga.librarycatalogue.model.Catalogue;
@@ -20,16 +21,20 @@ public class CatalogueService {
     private final CatalogueDao catalogueDao;
 
     @Autowired
-    public CatalogueService(@Qualifier("fakeDao") CatalogueDao catalogueDao) {
+    public CatalogueService(@Qualifier("postgres") CatalogueDao catalogueDao) {
         this.catalogueDao = catalogueDao;
     }
 
     // This is the method responsible for creating new catalogue
-    public int addCatalogue(Catalogue catalogue) {
-        return catalogueDao.insertCatalogue(catalogue);
+    public Catalogue addCatalogue(Catalogue catalogue) {
+        return catalogueDao.addCatalogue(catalogue);
     }
 
     public List<Catalogue> getAllCatalogue() {
         return catalogueDao.selectAllCatalogue();
+    }
+
+    public List<Catalogue> filterCatalogue(String criteria) {
+        return catalogueDao.filterCatalogue(criteria);
     }
 }
