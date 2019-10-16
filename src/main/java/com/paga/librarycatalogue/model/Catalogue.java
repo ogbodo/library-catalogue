@@ -2,14 +2,20 @@ package com.paga.librarycatalogue.model;
 
 import java.util.UUID;
 
+import javax.validation.constraints.NotBlank;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Catalogue {
     private UUID id;
     private String serialNumber;
+    @NotBlank
     private final String title;
+    @NotBlank
     private final String author;
+    @NotBlank
     private final String releaseYear;
+    @NotBlank
     private final String genre;
 
     public Catalogue(@JsonProperty("id") UUID id, @JsonProperty("serialNumber") String serialNumber,
