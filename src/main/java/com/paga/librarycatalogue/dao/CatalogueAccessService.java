@@ -5,9 +5,12 @@ import java.util.UUID;
 
 import com.paga.librarycatalogue.model.Catalogue;
 
+import org.springframework.stereotype.Repository;
+
 /**
  * CatalogueAccessService
  */
+@Repository("postgres")
 public class CatalogueAccessService implements CatalogueDao {
 
     @Override
