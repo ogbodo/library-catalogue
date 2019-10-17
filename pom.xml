@@ -15,8 +15,17 @@
 
 	<properties>
 		<java.version>11</java.version>
-		<main-class>com.paga.librarycatalogue</main-class>
+		<!-- <main-class>com.paga.librarycatalogue.LibraryCatalogueApplication.class</main-class> -->
 	</properties>
+
+	<profiles>
+		<profile>
+			<id>profile1</id>
+			<properties>
+				<spring.boot.mainclass>com.paga.librarycatalogue.LibraryCatalogueApplication</spring.boot.mainclass>
+			</properties>
+		</profile>
+	</profiles>
 
 	<dependencies>
 		<dependency>
@@ -37,8 +46,27 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+						<configuration>
+							<mainClass>${spring.boot.mainclass}</mainClass>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
-			<!-- <plugin>
+		</plugins>
+	</build>
+
+	<!-- <build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<version>2.1.9.RELEASE</version>
@@ -53,8 +81,8 @@
 						</goals>
 					</execution>
 				</executions>
-			</plugin> -->
+			</plugin>
 		</plugins>
-	</build>
+	</build> -->
 
 </project>
