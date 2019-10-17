@@ -15,7 +15,7 @@
 
 	<properties>
 		<java.version>11</java.version>
-		<!-- <main-class>com.paga.librarycatalogue.LibraryCatalogueApplication.class</main-class> -->
+		<!-- <start-class>com.paga.librarycatalogue.LibraryCatalogueApplication</start-class> -->
 	</properties>
 
 
@@ -33,38 +33,40 @@
 	</dependencies>
 
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<goals>
-							<goal>repackage</goal>
-						</goals>
-						<configuration>
-							<mainClass>com.paga.librarycatalogue.LibraryCatalogueApplication</mainClass>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
-
 	<!-- <build>
 		<plugins>
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
+				<groupId>com.heroku.sdk</groupId>
+				<artifactId>heroku-maven-plugin</artifactId>
+				<version>2.0.11</version>
+				<configuration>
+					<processTypes>
+						<web>java $JAVA_OPTS -cp target/classes:target/dependency/* Main</web>
+					</processTypes>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build> -->
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>com.heroku.sdk</groupId>
+				<artifactId>heroku-maven-plugin</artifactId>
+				<version>2.0.11</version>
+				<configuration>
+					<processTypes>
+						<web>java $JAVA_OPTS -cp target/classes:target/dependency/* Main</web>
+					</processTypes>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<version>2.1.9.RELEASE</version>
 				<configuration>
-					<mainClass>${main-class}</mainClass>
-					<layout>ZIP</layout>
+					<mainClass>com.paga.librarycatalogue.LibraryCatalogueApplication</mainClass>
+					<!-- <layout>ZIP</layout> -->
 				</configuration>
 				<executions>
 					<execution>
@@ -75,6 +77,6 @@
 				</executions>
 			</plugin>
 		</plugins>
-	</build> -->
+	</build>
 
 </project>
