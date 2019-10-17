@@ -15,7 +15,7 @@
 
 	<properties>
 		<java.version>11</java.version>
-		<start-class>package com.paga.librarycatalogue</start-class>
+		<start-class>com.paga.librarycatalogue</start-class>
 	</properties>
 
 	<dependencies>
