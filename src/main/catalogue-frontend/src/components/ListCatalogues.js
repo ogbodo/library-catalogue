@@ -46,7 +46,6 @@ function ListCatalogues({ catalogueList, loadCatalogues }) {
         });
       })
       .catch(error => {
-        toast.error(error.message);
         setState(oldState => {
           return { ...oldState, isLoading: false };
         });
@@ -83,7 +82,7 @@ function ListCatalogues({ catalogueList, loadCatalogues }) {
       });
     }
 
-    function DatePicker() {
+    function DatePickerComponent() {
       return (
         <DatePicker
           dateFormat="dd/MM/yyyy"
@@ -117,7 +116,7 @@ function ListCatalogues({ catalogueList, loadCatalogues }) {
           name="genre"
           onChange={handleChange}
         />
-        <DatePicker />
+        <DatePickerComponent />
       </Form>
     );
   }
@@ -135,7 +134,6 @@ function ListCatalogues({ catalogueList, loadCatalogues }) {
           setSubmitState(false);
         })
         .catch(error => {
-          toast.error(error);
           setSubmitState(false);
         });
     } else {
