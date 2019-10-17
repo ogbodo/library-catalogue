@@ -7,7 +7,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import com.paga.librarycatalogue.dao.FakeCatalogueDataAccess;
+import com.paga.librarycatalogue.dao.InMemoryCatalogueDataAccess;
 import com.paga.librarycatalogue.model.Catalogue;
 import com.paga.librarycatalogue.service.CatalogueService;
 
@@ -27,7 +27,7 @@ public class LibraryCatalogueApplicationTests {
 	private CatalogueService service;
 
 	@MockBean
-	private FakeCatalogueDataAccess repository;
+	private InMemoryCatalogueDataAccess repository;
 
 	private Catalogue catalogue1;
 	private Catalogue catalogue2;
