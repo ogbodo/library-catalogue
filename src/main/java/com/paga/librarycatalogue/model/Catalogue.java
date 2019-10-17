@@ -2,15 +2,26 @@ package com.paga.librarycatalogue.model;
 
 import java.util.UUID;
 
+import javax.validation.constraints.NotBlank;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Catalogue {
-    private final UUID id;
-    private final String serialNumber;
+    private UUID id;
+    private String serialNumber;
+    @NotBlank
     private final String title;
+    @NotBlank
     private final String author;
+    @NotBlank
     private final String releaseYear;
+    @NotBlank
     private final String genre;
 
-    public Catalogue(UUID id, String serialNumber, String title, String author, String releaseYear, String genre) {
+    public Catalogue(@JsonProperty("id") UUID id, @JsonProperty("serialNumber") String serialNumber,
+            @JsonProperty("title") String title, @JsonProperty("author") String author,
+            @JsonProperty("releaseYear") String releaseYear, @JsonProperty("genre") String genre) {
+
         this.id = id;
         this.serialNumber = serialNumber;
         this.title = title;
@@ -21,6 +32,14 @@ public class Catalogue {
 
     public UUID getId() {
         return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public void setSerialNumber(String serialNumber) {
+        this.serialNumber = serialNumber;
     }
 
     public String getSerialNumber() {
@@ -41,6 +60,14 @@ public class Catalogue {
 
     public String getGenre() {
         return genre;
+    }
+
+    public Boolean isAMatch(String criteria) {
+        criteria = criteria.toLowerCase();
+        return (this.author.toLowerCase().contains(criteria) || this.genre.toLowerCase().contains(criteria)
+                || this.releaseYear.toLowerCase().contains(criteria)
+                || this.serialNumber.toLowerCase().contains(criteria) || this.title.toLowerCase().contains(criteria));
+
     }
 
 }
