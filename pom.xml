@@ -15,7 +15,6 @@
 
 	<properties>
 		<java.version>11</java.version>
-		<!-- <start-class>com.paga.librarycatalogue.LibraryCatalogueApplication</start-class> -->
 	</properties>
 
 
@@ -32,21 +31,6 @@
 		</dependency>
 	</dependencies>
 
-
-	<!-- <build>
-		<plugins>
-			<plugin>
-				<groupId>com.heroku.sdk</groupId>
-				<artifactId>heroku-maven-plugin</artifactId>
-				<version>2.0.11</version>
-				<configuration>
-					<processTypes>
-						<web>java $JAVA_OPTS -cp target/classes:target/dependency/* Main</web>
-					</processTypes>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build> -->
 
 	<build>
 		<plugins>
@@ -141,5 +125,6 @@
 			</plugin>
 		</plugins>
 	</build>
+
 
 </project>
