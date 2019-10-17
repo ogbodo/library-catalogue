@@ -13,8 +13,8 @@ import org.springframework.stereotype.Repository;
  * FakeCatalogueDataAccess
  */
 
-@Repository("fakeDao")
-public class FakeCatalogueDataAccess implements CatalogueDao {
+@Repository("arrayList")
+public class InMemoryCatalogueDataAccess implements CatalogueDao {
 
     private static List<Catalogue> DB = new ArrayList<>();
 

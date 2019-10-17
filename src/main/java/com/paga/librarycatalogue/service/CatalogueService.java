@@ -21,7 +21,7 @@ public class CatalogueService {
     private final CatalogueDao catalogueDao;
 
     @Autowired
-    public CatalogueService(@Qualifier("postgres") CatalogueDao catalogueDao) {
+    public CatalogueService(@Qualifier("arrayList") CatalogueDao catalogueDao) {
         this.catalogueDao = catalogueDao;
     }
 
