@@ -15,6 +15,7 @@
 
 	<properties>
 		<java.version>11</java.version>
+		<start-class>package com.paga.librarycatalogue</start-class>
 	</properties>
 
 	<dependencies>
@@ -33,11 +34,11 @@
 
 	<build>
 		<plugins>
-			<!-- <plugin>
+			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin> -->
-			<plugin>
+			</plugin>
+			<!-- <plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<version>2.1.9.RELEASE</version>
@@ -52,7 +53,7 @@
 						</goals>
 					</execution>
 				</executions>
-			</plugin>
+			</plugin> -->
 		</plugins>
 	</build>
 
