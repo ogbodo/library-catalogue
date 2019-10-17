@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Grid } from "semantic-ui-react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 //Components
 import ListCatalogues from "./ListCatalogues";
@@ -10,24 +12,40 @@ function ManaCatalogue() {
 
   //Fetch all catalogues
   useEffect(() => {
-    axios.get("/catalogue").then(catalogueResp => {
-      const catalogues = catalogueResp.data;
-      setState(catalogues);
-    });
+    loadCatalogues();
   }, []);
 
+  function loadCatalogues() {
+    axios
+      .get("/catalogue")
+      .then(catalogueResp => {
+        const catalogues = catalogueResp.data;
+        setState(catalogues);
+      })
+      .catch(error => {
+        toast.error(error.message);
+        setState([]);
+      });
+  }
+
   return (
-    <Grid>
-      <Grid.Row>
-        <Grid.Column width={3} style={{ textAlign: "left" }}></Grid.Column>
-        <Grid.Column width={10}>
-          <div style={{ padding: "10px 20px 10px 0px" }}>
-            <ListCatalogues catalogueList={state} />
-          </div>
-        </Grid.Column>
-        <Grid.Column width={3}></Grid.Column>
-      </Grid.Row>
-    </Grid>
+    <>
+      <ToastContainer />
+      <Grid>
+        <Grid.Row>
+          <Grid.Column width={3} style={{ textAlign: "left" }}></Grid.Column>
+          <Grid.Column width={10}>
+            <div style={{ padding: "10px 20px 10px 0px" }}>
+              <ListCatalogues
+                catalogueList={state}
+                loadCatalogues={loadCatalogues}
+              />
+            </div>
+          </Grid.Column>
+          <Grid.Column width={3}></Grid.Column>
+        </Grid.Row>
+      </Grid>
+    </>
   );
 }
 

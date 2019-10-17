@@ -11,6 +11,12 @@ function NewCatalogueForm({ onSubmitHandler }) {
     releaseYear: "",
     genre: ""
   });
+  const [onSubmit, setonSubmit] = useState(false);
+  useEffect(() => {
+    if (onSubmit) {
+      onSubmitHandler(state);
+    }
+  }, [onSubmit, onSubmitHandler, state]);
 
   function handleChange(e, { name, value }) {
     setState(oldState => {
