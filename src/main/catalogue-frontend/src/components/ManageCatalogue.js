@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Grid } from "semantic-ui-react";
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 //Components
@@ -17,13 +17,12 @@ function ManaCatalogue() {
 
   function loadCatalogues() {
     axios
-      .get("/catalogue")
+      .get("http://localhost:8080/api/v1/catalogue")
       .then(catalogueResp => {
         const catalogues = catalogueResp.data;
         setState(catalogues);
       })
       .catch(error => {
-        toast.error(error.message);
         setState([]);
       });
   }
