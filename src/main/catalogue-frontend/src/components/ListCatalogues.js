@@ -7,7 +7,6 @@ import {
   Input,
   Card,
   Button,
-  Icon,
   Modal,
   Header,
   Form
@@ -154,7 +153,6 @@ function ListCatalogues({ catalogueList, loadCatalogues }) {
               style={{ backgroundColor: "green" }}
               onClick={toggleOpenState}
             >
-              <Icon name="plus" />
               Create New Catalogue
             </Button>
           }
@@ -162,9 +160,8 @@ function ListCatalogues({ catalogueList, loadCatalogues }) {
           onClose={toggleOpenState}
           basic
           size="small"
-          closeIcon
         >
-          <Header icon="plus" content="Please Enter The catalogue Details" />
+          <Header content="Please Enter The catalogue Details" />
           <Modal.Content>
             <NewCatalogueForm />
           </Modal.Content>
@@ -176,7 +173,7 @@ function ListCatalogues({ catalogueList, loadCatalogues }) {
               onClick={() => createCatalogue(true)}
               loading={submitState}
             >
-              <Icon name="check" /> Ok, Submit
+              Ok, Submit
             </Button>
           </Modal.Actions>
         </Modal>
@@ -185,7 +182,6 @@ function ListCatalogues({ catalogueList, loadCatalogues }) {
       <div style={{ float: "right", paddingBottom: 10 }}>
         <Button
           name="refresh"
-          icon="refresh"
           primary
           style={{ backgroundColor: "green" }}
           onClick={() => {
@@ -195,7 +191,9 @@ function ListCatalogues({ catalogueList, loadCatalogues }) {
             loadCatalogues();
           }}
           loading={submitState}
-        />
+        >
+          Refresh
+        </Button>
       </div>
       <div
         style={{
@@ -216,10 +214,11 @@ function ListCatalogues({ catalogueList, loadCatalogues }) {
         <Button
           name="searchButton"
           loading={state.isLoading}
-          icon="search"
           primary
           onClick={onFilterCatalogue}
-        />
+        >
+          search
+        </Button>
       </div>
       <Table padded>
         <Table.Header>
