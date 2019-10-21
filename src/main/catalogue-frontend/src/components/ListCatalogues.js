@@ -7,7 +7,6 @@ import {
   Input,
   Card,
   Button,
-  Icon,
   Modal,
   Header,
   Form
@@ -38,7 +37,7 @@ function ListCatalogues({ catalogueList, loadCatalogues }) {
   //Filter catalogue
   useEffect(() => {
     axios
-      .get(`/catalogue/${state.filterText}`)
+      .get(`http://localhost:8080/api/v1/catalogue/${state.filterText}`)
       .then(catalogueResp => {
         const catalogues = catalogueResp.data;
         setState(oldState => {
@@ -46,7 +45,6 @@ function ListCatalogues({ catalogueList, loadCatalogues }) {
         });
       })
       .catch(error => {
-        toast.error(error.message);
         setState(oldState => {
           return { ...oldState, isLoading: false };
         });
@@ -83,7 +81,7 @@ function ListCatalogues({ catalogueList, loadCatalogues }) {
       });
     }
 
-    function DatePicker() {
+    function DatePickerComponent() {
       return (
         <DatePicker
           dateFormat="dd/MM/yyyy"
@@ -117,7 +115,7 @@ function ListCatalogues({ catalogueList, loadCatalogues }) {
           name="genre"
           onChange={handleChange}
         />
-        <DatePicker />
+        <DatePickerComponent />
       </Form>
     );
   }
@@ -129,13 +127,15 @@ function ListCatalogues({ catalogueList, loadCatalogues }) {
       setSubmitState(true);
 
       axios
-        .post("/catalogue", catalogueStateRef.current)
+        .post(
+          "http://localhost:8080/api/v1/catalogue",
+          catalogueStateRef.current
+        )
         .then(catalogueResp => {
           toast.success("Catalogue was created successfully");
           setSubmitState(false);
         })
         .catch(error => {
-          toast.error(error);
           setSubmitState(false);
         });
     } else {
@@ -153,7 +153,6 @@ function ListCatalogues({ catalogueList, loadCatalogues }) {
               style={{ backgroundColor: "green" }}
               onClick={toggleOpenState}
             >
-              <Icon name="plus" />
               Create New Catalogue
             </Button>
           }
@@ -161,9 +160,8 @@ function ListCatalogues({ catalogueList, loadCatalogues }) {
           onClose={toggleOpenState}
           basic
           size="small"
-          closeIcon
         >
-          <Header icon="plus" content="Please Enter The catalogue Details" />
+          <Header content="Please Enter The catalogue Details" />
           <Modal.Content>
             <NewCatalogueForm />
           </Modal.Content>
@@ -175,7 +173,7 @@ function ListCatalogues({ catalogueList, loadCatalogues }) {
               onClick={() => createCatalogue(true)}
               loading={submitState}
             >
-              <Icon name="check" /> Ok, Submit
+              Ok, Submit
             </Button>
           </Modal.Actions>
         </Modal>
@@ -184,7 +182,6 @@ function ListCatalogues({ catalogueList, loadCatalogues }) {
       <div style={{ float: "right", paddingBottom: 10 }}>
         <Button
           name="refresh"
-          icon="refresh"
           primary
           style={{ backgroundColor: "green" }}
           onClick={() => {
@@ -194,7 +191,9 @@ function ListCatalogues({ catalogueList, loadCatalogues }) {
             loadCatalogues();
           }}
           loading={submitState}
-        />
+        >
+          Refresh
+        </Button>
       </div>
       <div
         style={{
@@ -215,10 +214,11 @@ function ListCatalogues({ catalogueList, loadCatalogues }) {
         <Button
           name="searchButton"
           loading={state.isLoading}
-          icon="search"
           primary
           onClick={onFilterCatalogue}
-        />
+        >
+          search
+        </Button>
       </div>
       <Table padded>
         <Table.Header>
@@ -256,7 +256,7 @@ function ListCatalogues({ catalogueList, loadCatalogues }) {
         <Table.Cell>{serialNumber}</Table.Cell>
         <Table.Cell>{title}</Table.Cell>
         <Table.Cell>{author}</Table.Cell>
-        <Table.Cell>{releaseYear}</Table.Cell>
+        <Table.Cell>{new Date(releaseYear).getFullYear()}</Table.Cell>
         <Table.Cell>{genre}</Table.Cell>
       </Table.Row>
     );
