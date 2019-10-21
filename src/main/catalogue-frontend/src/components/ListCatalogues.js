@@ -38,7 +38,7 @@ function ListCatalogues({ catalogueList, loadCatalogues }) {
   //Filter catalogue
   useEffect(() => {
     axios
-      .get(`/catalogue/${state.filterText}`)
+      .get(`http://localhost:8080/api/v1/catalogue/${state.filterText}`)
       .then(catalogueResp => {
         const catalogues = catalogueResp.data;
         setState(oldState => {
@@ -128,7 +128,10 @@ function ListCatalogues({ catalogueList, loadCatalogues }) {
       setSubmitState(true);
 
       axios
-        .post("/catalogue", catalogueStateRef.current)
+        .post(
+          "http://localhost:8080/api/v1/catalogue",
+          catalogueStateRef.current
+        )
         .then(catalogueResp => {
           toast.success("Catalogue was created successfully");
           setSubmitState(false);
@@ -254,7 +257,7 @@ function ListCatalogues({ catalogueList, loadCatalogues }) {
         <Table.Cell>{serialNumber}</Table.Cell>
         <Table.Cell>{title}</Table.Cell>
         <Table.Cell>{author}</Table.Cell>
-        <Table.Cell>{releaseYear}</Table.Cell>
+        <Table.Cell>{new Date(releaseYear).getFullYear()}</Table.Cell>
         <Table.Cell>{genre}</Table.Cell>
       </Table.Row>
     );

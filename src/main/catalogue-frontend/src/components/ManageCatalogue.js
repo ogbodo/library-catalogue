@@ -17,7 +17,7 @@ function ManaCatalogue() {
 
   function loadCatalogues() {
     axios
-      .get("/catalogue")
+      .get("http://localhost:8080/api/v1/catalogue")
       .then(catalogueResp => {
         const catalogues = catalogueResp.data;
         setState(catalogues);
